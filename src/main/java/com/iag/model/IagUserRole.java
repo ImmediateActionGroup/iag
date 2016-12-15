@@ -1,7 +1,6 @@
 package com.iag.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by xueshan.wei on 12/13/2016.
@@ -12,7 +11,9 @@ public class IagUserRole {
     private Integer id;
     private IagUser user;
     private IagRole role;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     public Integer getId() {
         return id;
     }

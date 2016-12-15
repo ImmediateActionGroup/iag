@@ -3,6 +3,9 @@ package com.iag.model;
 import javax.persistence.*;
 
 /**
+ * 关注类实体
+ * 多对多产生的一张表
+ * 为了便于操纵这种关系，所以建了这个实体
  * Created by xueshan.wei on 12/13/2016.
  */
 @Entity

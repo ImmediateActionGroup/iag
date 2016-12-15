@@ -1,7 +1,6 @@
 package com.iag.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * board class
@@ -10,12 +9,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "iag_board")
 public class IagBoard {
-    private Integer id;
-    private String boardName;
-    private String icon;
-    private String description;
-    private Integer isDelete;
+    private Integer id; //主键
+    private String boardName; //板块名称
+    private String icon; //板块图标logo
+    private String description; //板块描述
+    private Integer isDelete; //标记是否删除，软删除
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
     public Integer getId() {
         return id;
     }
@@ -24,6 +26,7 @@ public class IagBoard {
         this.id = id;
     }
 
+    @Column(name = "board_name", nullable = false)
     public String getBoardName() {
         return boardName;
     }
@@ -32,6 +35,7 @@ public class IagBoard {
         this.boardName = boardName;
     }
 
+    @Column(name = "icon", nullable = false)
     public String getIcon() {
         return icon;
     }
@@ -40,6 +44,7 @@ public class IagBoard {
         this.icon = icon;
     }
 
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -48,6 +53,7 @@ public class IagBoard {
         this.description = description;
     }
 
+    @Column(name = "is_delete")
     public Integer getIsDelete() {
         return isDelete;
     }

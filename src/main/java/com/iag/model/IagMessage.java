@@ -1,7 +1,6 @@
 package com.iag.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -17,7 +16,9 @@ public class IagMessage {
     private Date sendTime;
     private Integer isRead;
     private Integer isReply;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     public Integer getId() {
         return id;
     }

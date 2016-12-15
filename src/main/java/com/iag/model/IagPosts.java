@@ -1,7 +1,6 @@
 package com.iag.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -22,7 +21,9 @@ public class IagPosts {
     private Date lastModifyTime;
     private IagUser user;
     private IagBoard board;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     public Integer getId() {
         return id;
     }
