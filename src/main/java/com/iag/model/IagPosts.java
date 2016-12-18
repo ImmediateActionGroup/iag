@@ -10,17 +10,17 @@ import java.util.Date;
 @Table(name = "iag_posts")
 public class IagPosts {
     private Integer id;
-    private String title;
-    private String content;
-    private Date publishTime;
-    private Integer viewNum;
-    private Integer praiseNum;
-    private Integer editType;
-    private Integer isDelete;
-    private Integer isHidden;
-    private Date lastModifyTime;
-    private IagUser user;
-    private IagBoard board;
+    private String title; // 标题
+    private String content; // 内容
+    private Date publishTime; // 发布时间
+    private Integer viewNum; //查看数
+    private Integer praiseNum; //点赞数
+    private Integer editType; //文章文本，markdown, 富文本
+    private Integer isDelete; //是否删除
+    private Integer isHidden; // 是否隐藏
+    private Date lastModifyTime; //最后修改时间
+    private IagUser user; // 发帖人
+    private IagBoard board; //所属板块
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
@@ -32,6 +32,7 @@ public class IagPosts {
         this.id = id;
     }
 
+    @Column(name = "title", nullable = false)
     public String getTitle() {
         return title;
     }
@@ -40,6 +41,7 @@ public class IagPosts {
         this.title = title;
     }
 
+    @Column(name = "content", nullable = false)
     public String getContent() {
         return content;
     }
@@ -48,6 +50,7 @@ public class IagPosts {
         this.content = content;
     }
 
+    @Column(name = "publish_time", nullable = false)
     public Date getPublishTime() {
         return publishTime;
     }
@@ -56,6 +59,7 @@ public class IagPosts {
         this.publishTime = publishTime;
     }
 
+    @Column(name = "view_num", nullable = false)
     public Integer getViewNum() {
         return viewNum;
     }
@@ -64,6 +68,7 @@ public class IagPosts {
         this.viewNum = viewNum;
     }
 
+    @Column(name = "parise_num", nullable = false)
     public Integer getPraiseNum() {
         return praiseNum;
     }
@@ -72,6 +77,7 @@ public class IagPosts {
         this.praiseNum = praiseNum;
     }
 
+    @Column(name = "edit_type", nullable = false)
     public Integer getEditType() {
         return editType;
     }
@@ -79,7 +85,7 @@ public class IagPosts {
     public void setEditType(Integer editType) {
         this.editType = editType;
     }
-
+    @Column(name = "is_delete", nullable = false)
     public Integer getIsDelete() {
         return isDelete;
     }
@@ -87,7 +93,7 @@ public class IagPosts {
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
     }
-
+    @Column(name = "is_hidden", nullable = false)
     public Integer getIsHidden() {
         return isHidden;
     }
@@ -95,7 +101,7 @@ public class IagPosts {
     public void setIsHidden(Integer isHidden) {
         this.isHidden = isHidden;
     }
-
+    @Column(name = "last_modify_time", nullable = false)
     public Date getLastModifyTime() {
         return lastModifyTime;
     }
@@ -103,7 +109,8 @@ public class IagPosts {
     public void setLastModifyTime(Date lastModifyTime) {
         this.lastModifyTime = lastModifyTime;
     }
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     public IagUser getUser() {
         return user;
     }
@@ -112,6 +119,8 @@ public class IagPosts {
         this.user = user;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
     public IagBoard getBoard() {
         return board;
     }

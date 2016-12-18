@@ -31,7 +31,16 @@ public class IagUser {
     private Set<IagUser> attentioneds = new HashSet<IagUser>();
     //发表的回复
     private List<IagComments> commentss = new ArrayList<IagComments>();
-
+    //发送的消息
+    private List<IagMessage> sendMessages = new ArrayList<IagMessage>();
+    //接收的消息
+    private List<IagMessage> resiveMessages = new ArrayList<IagMessage>();
+    //发的帖子
+    private List<IagPosts> postss = new ArrayList<IagPosts>();
+    // 用户的角色
+    private Set<IagRole> roles = new HashSet<IagRole>();
+    //用户的版块
+    private Set<IagBoard> boards = new HashSet<IagBoard>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
@@ -118,7 +127,10 @@ public class IagUser {
     public void setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "attention")
+
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @JoinTable(joinColumns = {@JoinColumn(name = "attention_id")},
+            inverseJoinColumns = {@JoinColumn(name = "attentioned_id")})
     public Set<IagUser> getAttentions() {
         return attentions;
     }
@@ -126,7 +138,8 @@ public class IagUser {
     public void setAttentions(Set<IagUser> attentions) {
         this.attentions = attentions;
     }
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "attentioned")
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "attentions")
     public Set<IagUser> getAttentioneds() {
         return attentioneds;
     }
@@ -141,5 +154,52 @@ public class IagUser {
 
     public void setCommentss(List<IagComments> commentss) {
         this.commentss = commentss;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sender")
+    public List<IagMessage> getSendMessages() {
+        return sendMessages;
+    }
+
+    public void setSendMessages(List<IagMessage> sendMessages) {
+        this.sendMessages = sendMessages;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "resiver")
+    public List<IagMessage> getResiveMessages() {
+        return resiveMessages;
+    }
+
+    public void setResiveMessages(List<IagMessage> resiveMessages) {
+        this.resiveMessages = resiveMessages;
+    }
+
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY, mappedBy = "user")
+    public List<IagPosts> getPostss() {
+        return postss;
+    }
+
+    public void setPostss(List<IagPosts> postss) {
+        this.postss = postss;
+    }
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @JoinTable(name = "iag_user_role", joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    public Set<IagRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<IagRole> roles) {
+        this.roles = roles;
+    }
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @JoinTable(name = "iag_user_board", joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "board_id")})
+    public Set<IagBoard> getBoards() {
+        return boards;
+    }
+
+    public void setBoards(Set<IagBoard> boards) {
+        this.boards = boards;
     }
 }

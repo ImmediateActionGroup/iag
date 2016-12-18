@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "iag_permission")
 public class IagPermission {
     private Integer id;
-    private String permissionName;
+    private String permissionName; //权限名称， 增删查改
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
@@ -20,7 +20,7 @@ public class IagPermission {
     public void setId(Integer id) {
         this.id = id;
     }
-
+    @Column(name = "permission_name")
     public String getPermissionName() {
         return permissionName;
     }

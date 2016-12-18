@@ -1,6 +1,8 @@
 package com.iag.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * board class
@@ -14,6 +16,8 @@ public class IagBoard {
     private String icon; //板块图标logo
     private String description; //板块描述
     private Integer isDelete; //标记是否删除，软删除
+    private Set<IagUser> users = new HashSet<IagUser>(); // 板块中的用户
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,5 +64,13 @@ public class IagBoard {
 
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
+    }
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "boards")
+    public Set<IagUser> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<IagUser> users) {
+        this.users = users;
     }
 }

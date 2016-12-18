@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "iag_resource")
 public class IagResource {
     private Integer id;
-    private String resourceName;
+    private String resourceName; // 资源名称
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
@@ -20,7 +20,7 @@ public class IagResource {
     public void setId(Integer id) {
         this.id = id;
     }
-
+    @Column(name = "resource_name", nullable = false)
     public String getResourceName() {
         return resourceName;
     }

@@ -10,10 +10,10 @@ import java.util.Date;
 @Table(name = "iag_notice")
 public class IagNotice {
     private Integer id;
-    private String content;
-    private Date sendTime;
-    private Integer isRead;
-    private Integer isDelete;
+    private String content; //内容
+    private Date sendTime; // 发送时间
+    private Integer isRead; //是否已读
+    private Integer isDelete; //是否删除
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
@@ -25,6 +25,7 @@ public class IagNotice {
         this.id = id;
     }
 
+    @Column(name = "content", nullable = false)
     public String getContent() {
         return content;
     }
@@ -33,6 +34,7 @@ public class IagNotice {
         this.content = content;
     }
 
+    @Column(name = "send_time", nullable = false)
     public Date getSendTime() {
         return sendTime;
     }
@@ -41,6 +43,7 @@ public class IagNotice {
         this.sendTime = sendTime;
     }
 
+    @Column(name = "is_read", nullable = false)
     public Integer getIsRead() {
         return isRead;
     }
@@ -49,6 +52,7 @@ public class IagNotice {
         this.isRead = isRead;
     }
 
+    @Column(name = "is_delete", nullable = false)
     public Integer getIsDelete() {
         return isDelete;
     }

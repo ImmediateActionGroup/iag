@@ -9,8 +9,9 @@ import javax.persistence.*;
 @Table(name = "iag_resource_permission")
 public class IagResPer {
     private Integer id;
-    private IagResource resource;
-    private IagPermission permission;
+    private IagResource resource; //资源
+    private IagPermission permission; //权限
+    private String resPerValue; // 资源权限字符串
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
@@ -22,6 +23,8 @@ public class IagResPer {
         this.id = id;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "resource_id")
     public IagResource getResource() {
         return resource;
     }
@@ -30,11 +33,22 @@ public class IagResPer {
         this.resource = resource;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "permission_id")
     public IagPermission getPermission() {
         return permission;
     }
 
     public void setPermission(IagPermission permission) {
         this.permission = permission;
+    }
+
+    @Column(name = "res_per_value")
+    public String getResPerValue() {
+        return resPerValue;
+    }
+
+    public void setResPerValue(String resPerValue) {
+        this.resPerValue = resPerValue;
     }
 }
