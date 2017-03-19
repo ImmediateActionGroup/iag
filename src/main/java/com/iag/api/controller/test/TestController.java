@@ -19,7 +19,6 @@ public class TestController extends ApiBaseController {
     @RequestMapping(value = "/api", method = RequestMethod.GET)
     @ControllerLog(log = SystemLog.DEFAULT)
     public void test1() throws ApiBusinessException{
-
         this.apiResult.reset();
         this.apiResult.setMsg("测试api 成功");
         this.renderResult();
