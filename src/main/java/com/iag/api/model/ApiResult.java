@@ -1,5 +1,6 @@
 package com.iag.api.model;
 
+import com.google.gson.annotations.Expose;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,10 +10,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApiResult {
     //API返回的代码，00000000为默认代码，表示API调用正常
+    @Expose
     private String code;
     //API调用返回的信息，默认信息为”查询正常“
+    @Expose
     private String msg;
     //API调用返回的实体数据，可能是map 也可能是list
+    @Expose
     private Object data;
 
     public ApiResult(){
