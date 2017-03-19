@@ -1,6 +1,7 @@
 package com.iag.exception.ex;
 
-import com.iag.enums.exception.ExceptionEnum;
+
+import com.iag.exception.enums.ExceptionEnum;
 
 /**
  * Created by beishan on 2017/3/8.

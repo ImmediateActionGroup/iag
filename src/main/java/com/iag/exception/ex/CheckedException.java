@@ -12,7 +12,7 @@ public class CheckedException extends Exception{
     }
 
     public CheckedException(ExceptionEnum ee) {
-        //super(ee.getCode() + "------" + ee.getMessage());
+        super(ee.getCode() + "------" + ee.getMsg());
         this.ee = ee;
     }
 
