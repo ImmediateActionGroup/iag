@@ -41,6 +41,15 @@ public class IagUser {
     private Set<IagRole> roles = new HashSet<IagRole>();
     //用户的版块
     private Set<IagBoard> boards = new HashSet<IagBoard>();
+
+    @Override
+    public String toString() {
+        return this.id + ","
+                + this.nickname + ","
+                + this.email + ","
+                + this.registerTime;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)

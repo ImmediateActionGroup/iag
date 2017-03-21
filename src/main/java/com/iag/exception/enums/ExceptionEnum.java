@@ -15,7 +15,10 @@ public enum ExceptionEnum {
 
     //帖子相关
 
-    //恢复相关
+    //回复相关
+
+    //角色相关
+    ROLE_NOT_EXIST("50000001", "角色不存在"),
 
     //数据库相关
     DB_CONNECTION_ERROR("80000000", "数据库连接异常"),
