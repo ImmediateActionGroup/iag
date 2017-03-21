@@ -13,6 +13,9 @@ public class IagRole {
     private Integer id;
     private String roleName; //角色名称
     private Set<IagUser> users = new HashSet<IagUser>();
+
+    private Set<IagResPer> resPers = new HashSet<IagResPer>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
@@ -39,5 +42,16 @@ public class IagRole {
 
     public void setUsers(Set<IagUser> users) {
         this.users = users;
+    }
+
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @JoinTable(name = "iag_role_resper", joinColumns = {@JoinColumn(name = "role_id")},
+        inverseJoinColumns = {@JoinColumn(name = "res_per_id")})
+    public Set<IagResPer> getResPers() {
+        return resPers;
+    }
+
+    public void setResPers(Set<IagResPer> resPers) {
+        this.resPers = resPers;
     }
 }

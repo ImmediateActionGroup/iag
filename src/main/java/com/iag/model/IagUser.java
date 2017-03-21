@@ -52,7 +52,7 @@ public class IagUser {
         this.id = id;
     }
 
-    @Column(name = "username", nullable = false)
+    @Column(name = "username")
     public String getUsername() {
         return username;
     }
@@ -119,7 +119,7 @@ public class IagUser {
     public void setLastModifyTime(Date lastModifyTime) {
         this.lastModifyTime = lastModifyTime;
     }
-    @Column(name = "last_login_time", nullable = false)
+    @Column(name = "last_login_time")
     public Date getLastLoginTime() {
         return lastLoginTime;
     }

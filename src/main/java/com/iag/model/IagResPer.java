@@ -1,6 +1,8 @@
 package com.iag.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by xueshan.wei on 12/13/2016.
@@ -12,6 +14,8 @@ public class IagResPer {
     private IagResource resource; //资源
     private IagPermission permission; //权限
     private String resPerValue; // 资源权限字符串
+
+    private Set<IagRole> roles = new HashSet<IagRole>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
@@ -50,5 +54,14 @@ public class IagResPer {
 
     public void setResPerValue(String resPerValue) {
         this.resPerValue = resPerValue;
+    }
+
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, mappedBy = "resPers")
+    public Set<IagRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<IagRole> roles) {
+        this.roles = roles;
     }
 }

@@ -8,6 +8,11 @@ public enum ExceptionEnum {
 
     // 用户相关
 
+    //添加用户
+    USER_ADD_EXIST_EMAIL("10000001", "用户邮箱已存在"),
+    USER_ADD_EXIST_NICKNAME("10000002", "用户昵称已存在"),
+    USER_ADD_EXIST_PHONENUM("10000003", "用户手机已存在"),
+
     //帖子相关
 
     //恢复相关
@@ -17,7 +22,9 @@ public enum ExceptionEnum {
     DB_QUERY_ERROR("80000001", "数据库查询异常"),
     DB_UPDATE_ERROR("80000001", "数据库更新异常"),
     DB_DELETE_ERROR("80000001", "数据库删除异常"),
-    DB_ADD_ERROR("80000001", "数据库插入异常");
+    DB_ADD_ERROR("80000001", "数据库插入异常"),
+
+    MODEL_EXIST("80090001", "要保存的实体已经存在");
     //异常代码
     private String code;
     //异常信息

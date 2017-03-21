@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class IagResource {
     private Integer id;
     private String resourceName; // 资源名称
+    private String resourceValue; //资源字符串
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
@@ -27,5 +28,14 @@ public class IagResource {
 
     public void setResourceName(String resourceName) {
         this.resourceName = resourceName;
+    }
+
+    @Column(name = "resource_value", nullable = false)
+    public String getResourceValue() {
+        return resourceValue;
+    }
+
+    public void setResourceValue(String resourceValue) {
+        this.resourceValue = resourceValue;
     }
 }

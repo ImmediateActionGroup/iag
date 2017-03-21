@@ -40,6 +40,8 @@ public class ServiceManager {
     private UserRoleService userRoleService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ResPerService resPerService;
 
     public AttentionService getAttentionService() {
         return attentionService;
@@ -99,5 +101,9 @@ public class ServiceManager {
 
     public UserService getUserService() {
         return userService;
+    }
+
+    public ResPerService getResPerService() {
+        return resPerService;
     }
 }
