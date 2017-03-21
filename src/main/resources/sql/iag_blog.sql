@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localmysql
-Source Server Version : 50716
+Source Server         : mysql
+Source Server Version : 50624
 Source Host           : 127.0.0.1:3306
 Source Database       : iag_blog
 
 Target Server Type    : MYSQL
-Target Server Version : 50716
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2017-03-21 18:31:25
+Date: 2017-03-21 22:57:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -56,6 +56,29 @@ CREATE TABLE `iag_comments` (
 
 -- ----------------------------
 -- Records of iag_comments
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for iag_darkroom
+-- ----------------------------
+DROP TABLE IF EXISTS `iag_darkroom`;
+CREATE TABLE `iag_darkroom` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) NOT NULL,
+  `dark_time` int(11) NOT NULL,
+  `begin_time` datetime NOT NULL,
+  `end_time` datetime DEFAULT NULL,
+  `status` tinyint(4) NOT NULL,
+  `is_abort` tinyint(4) NOT NULL,
+  `reason` varchar(255) DEFAULT NULL,
+  `abort_reason` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_dark_user` (`user_id`),
+  CONSTRAINT `fk_dark_user` FOREIGN KEY (`user_id`) REFERENCES `iag_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of iag_darkroom
 -- ----------------------------
 
 -- ----------------------------
@@ -393,11 +416,16 @@ CREATE TABLE `iag_user` (
   PRIMARY KEY (`id`),
   KEY `config_id` (`config_id`),
   CONSTRAINT `iag_user_ibfk_1` FOREIGN KEY (`config_id`) REFERENCES `iag_userconfig` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of iag_user
 -- ----------------------------
+INSERT INTO `iag_user` VALUES ('1', null, 'iag_33675f2a', '3122@test.com', 'e10adc3949ba59abbe56e057f20f883e', null, '0', '2017-03-21 20:31:57', '2017-03-21 20:31:57', null, null);
+INSERT INTO `iag_user` VALUES ('2', null, 'iag_f74a1886', '31222@test.com', 'e10adc3949ba59abbe56e057f20f883e', null, '0', '2017-03-21 20:33:35', '2017-03-21 20:33:35', null, null);
+INSERT INTO `iag_user` VALUES ('3', null, 'iag_d3fe99ef', '312222@test.com', 'e10adc3949ba59abbe56e057f20f883e', null, '0', '2017-03-21 20:34:57', '2017-03-21 20:34:57', null, null);
+INSERT INTO `iag_user` VALUES ('4', null, 'iag_fd622574', '3122222@test.com', 'e10adc3949ba59abbe56e057f20f883e', null, '0', '2017-03-21 20:37:13', '2017-03-21 20:37:13', null, null);
+INSERT INTO `iag_user` VALUES ('5', null, 'iag_39c4f895', 'reg22222@test.com', 'e10adc3949ba59abbe56e057f20f883e', null, '0', '2017-03-21 20:43:57', '2017-03-21 20:43:57', null, null);
 
 -- ----------------------------
 -- Table structure for iag_userconfig
@@ -464,8 +492,13 @@ CREATE TABLE `iag_user_role` (
   KEY `role_id` (`role_id`) USING BTREE,
   CONSTRAINT `iag_user_role_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `iag_user` (`id`),
   CONSTRAINT `iag_user_role_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `iag_role` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of iag_user_role
 -- ----------------------------
+INSERT INTO `iag_user_role` VALUES ('1', '1', '1');
+INSERT INTO `iag_user_role` VALUES ('2', '2', '1');
+INSERT INTO `iag_user_role` VALUES ('3', '3', '1');
+INSERT INTO `iag_user_role` VALUES ('4', '4', '1');
+INSERT INTO `iag_user_role` VALUES ('5', '5', '3');
