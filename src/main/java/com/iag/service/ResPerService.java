@@ -16,4 +16,6 @@ public interface ResPerService {
     IagResPer addResPer(IagResource resource, IagPermission permission) throws BusinessException;
 
     List<IagResPer> queryAll() throws DataBaseException;
+
+    IagResPer queryById(Integer id) throws DataBaseException;
 }

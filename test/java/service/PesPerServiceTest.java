@@ -12,10 +12,14 @@ import org.junit.Test;
 import java.util.List;
 
 /**
+ * 资源权限测试类
  * Created by xueshan.wei on 3/21/2017.
  */
 public class PesPerServiceTest extends BaseTest {
 
+    /**
+     * 用于初始化 资源权限
+     */
     @Test
     public void init(){
         List<IagResource> resources = null;

@@ -45,4 +45,8 @@ public class ResPerServiceImpl extends BaseService<IagResPer> implements ResPerS
         }
         return false;
     }
+
+    public IagResPer queryById(Integer id) throws DataBaseException {
+        return (IagResPer) baseDAO.queryById(com.iag.model.IagResPer.class, id);
+    }
 }

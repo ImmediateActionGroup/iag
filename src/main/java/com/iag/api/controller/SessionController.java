@@ -4,7 +4,7 @@ import com.iag.annotation.ControllerLog;
 import com.iag.api.controller.base.ApiBaseController;
 import com.iag.api.model.ApiResult;
 import com.iag.exception.ex.ApiBusinessException;
-import com.iag.validate.Login;
+import com.iag.validate.ValidateLogin;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
@@ -31,7 +31,7 @@ public class SessionController extends ApiBaseController {
     @ApiOperation(value = "用户登录", notes = "用于用户登录",
             response = ApiResult.class, httpMethod = "POST")
     @ControllerLog
-    public void login(@Valid @RequestBody Login login) throws ApiBusinessException{
+    public void login(@Valid @RequestBody ValidateLogin login) throws ApiBusinessException{
         //登录逻辑
 
     }

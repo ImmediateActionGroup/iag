@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.NotBlank;
  * user login validate class
  * Created by beishan on 2017/3/19.
  */
-public class Login {
+public class ValidateLogin {
     @NotBlank(message = "用户登录账户不能为空")
     private String account;
     @NotBlank(message = "用户登录密码不能为空")

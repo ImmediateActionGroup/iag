@@ -4,6 +4,7 @@ import com.iag.enums.ModelIsDelete;
 import com.iag.exception.enums.ExceptionEnum;
 import com.iag.exception.ex.BusinessException;
 import com.iag.exception.ex.DataBaseException;
+import com.iag.model.IagRole;
 import com.iag.model.IagUser;
 import com.iag.model.IagUserconfig;
 import com.iag.service.UserService;
@@ -32,12 +33,16 @@ public class UserServiceImpl extends BaseService<IagUser> implements UserService
             if(isExistByNickName(user.getNickname())){
                 throw new BusinessException(ExceptionEnum.USER_ADD_EXIST_NICKNAME);
             }
-            Integer newUser = saveUser(user);
-            // TODO: 3/21/2017 need to do s
-            return null;
+            //初始化用户信息
+            user = addInitUserInfo(user);
+            Integer newId = saveUser(user);
+            return (IagUser) baseDAO.queryById(com.iag.model.IagUser.class, newId);
         }
         return null;
     }
+
+    //注册方法
+    // TODO: 3/21/2017 register method 
 
     private IagUser addInitUserInfo(IagUser user){
         //1、初始化用户基本信息
@@ -45,8 +50,10 @@ public class UserServiceImpl extends BaseService<IagUser> implements UserService
         Date nowDate = new Date();
         user.setLastModifyTime(nowDate);
         user.setRegisterTime(nowDate);
-        //2、用户角色授权
-
+        //2、用户角色授权（默认授予普通会员角色）
+        IagRole defaultRole = new IagRole();
+        defaultRole.setId(3);
+        user.getRoles().add(defaultRole);
         //3、加密用户密码
         user.setPassword(SecurityTools.toMd5(user.getPassword()));
 
