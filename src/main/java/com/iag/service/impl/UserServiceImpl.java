@@ -186,4 +186,8 @@ public class UserServiceImpl extends BaseService<IagUser> implements UserService
         }
         return null;
     }
+
+    public IagUser queryById(Integer uid) throws DataBaseException {
+        return (IagUser) baseDAO.queryById(com.iag.model.IagUser.class, uid);
+    }
 }

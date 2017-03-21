@@ -13,12 +13,17 @@ public enum ExceptionEnum {
     USER_ADD_EXIST_NICKNAME("10000002", "用户昵称已存在"),
     USER_ADD_EXIST_PHONENUM("10000003", "用户手机已存在"),
 
+    USER_NOT_EXIST("10020001", "用户不存在"),
+
     //帖子相关
 
     //回复相关
 
     //角色相关
     ROLE_NOT_EXIST("50000001", "角色不存在"),
+
+    //小黑屋相关
+    DARKROOM_NOT_EXIST("60000001", "小黑屋不存在"),
 
     //数据库相关
     DB_CONNECTION_ERROR("80000000", "数据库连接异常"),

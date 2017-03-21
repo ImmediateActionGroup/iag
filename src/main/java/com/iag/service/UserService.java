@@ -53,4 +53,6 @@ public interface UserService {
      * @throws BusinessException
      */
     boolean isExistByEmail(String email) throws DataBaseException;
+
+    IagUser queryById(Integer uid) throws DataBaseException;
 }

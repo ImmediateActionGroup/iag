@@ -42,6 +42,8 @@ public class ServiceManager {
     private UserService userService;
     @Autowired
     private ResPerService resPerService;
+    @Autowired
+    private DarkroomService darkroomService;
 
     public AttentionService getAttentionService() {
         return attentionService;
@@ -105,5 +107,9 @@ public class ServiceManager {
 
     public ResPerService getResPerService() {
         return resPerService;
+    }
+
+    public DarkroomService getDarkroomService() {
+        return darkroomService;
     }
 }
