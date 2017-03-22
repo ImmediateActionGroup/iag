@@ -17,6 +17,7 @@ public enum ExceptionEnum {
 
     //帖子相关
 
+    POST_EDIT_TYPE_NOTEXIST("40000001", "帖子文本类型不存在"),
     //回复相关
 
     //角色相关
@@ -25,6 +26,8 @@ public enum ExceptionEnum {
     //小黑屋相关
     DARKROOM_NOT_EXIST("60000001", "该用户不在小黑屋，或者已经从小黑屋释放了"),
 
+    //板块相关
+    BOARD_USER_ROLE_NOTEXIST("70000001", "版块用户角色不存在"),
     //数据库相关
     DB_CONNECTION_ERROR("80000000", "数据库连接异常"),
     DB_QUERY_ERROR("80000001", "数据库查询异常"),

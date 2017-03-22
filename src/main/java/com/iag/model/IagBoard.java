@@ -39,7 +39,7 @@ public class IagBoard {
         this.boardName = boardName;
     }
 
-    @Column(name = "icon", nullable = false)
+    @Column(name = "icon")
     public String getIcon() {
         return icon;
     }

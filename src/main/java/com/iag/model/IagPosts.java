@@ -68,7 +68,7 @@ public class IagPosts {
         this.viewNum = viewNum;
     }
 
-    @Column(name = "parise_num", nullable = false)
+    @Column(name = "praise_num", nullable = false)
     public Integer getPraiseNum() {
         return praiseNum;
     }
