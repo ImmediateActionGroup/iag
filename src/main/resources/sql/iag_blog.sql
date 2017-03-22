@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2017-03-21 22:57:56
+Date: 2017-03-22 23:06:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,15 +22,16 @@ DROP TABLE IF EXISTS `iag_board`;
 CREATE TABLE `iag_board` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `board_name` varchar(20) NOT NULL COMMENT '板块名字',
-  `icon` varchar(30) NOT NULL COMMENT '版块图标',
+  `icon` varchar(30) DEFAULT NULL COMMENT '版块图标',
   `description` varchar(100) DEFAULT NULL COMMENT '描述',
   `is_delete` tinyint(4) NOT NULL COMMENT '软删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of iag_board
 -- ----------------------------
+INSERT INTO `iag_board` VALUES ('1', '新版块', null, '这是版块描述', '0');
 
 -- ----------------------------
 -- Table structure for iag_comments
@@ -198,11 +199,12 @@ CREATE TABLE `iag_posts` (
   KEY `board_id` (`board_id`),
   CONSTRAINT `iag_posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `iag_user` (`id`),
   CONSTRAINT `iag_posts_ibfk_2` FOREIGN KEY (`board_id`) REFERENCES `iag_board` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of iag_posts
 -- ----------------------------
+INSERT INTO `iag_posts` VALUES ('1', '这是标题', '这是内容', '2017-03-22 22:58:33', '0', '0', '0', '0', '0', null, '1', '1');
 
 -- ----------------------------
 -- Table structure for iag_posts_label
@@ -473,11 +475,12 @@ CREATE TABLE `iag_user_board` (
   KEY `board_id` (`board_id`),
   CONSTRAINT `iag_user_board_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `iag_user` (`id`),
   CONSTRAINT `iag_user_board_ibfk_2` FOREIGN KEY (`board_id`) REFERENCES `iag_board` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of iag_user_board
 -- ----------------------------
+INSERT INTO `iag_user_board` VALUES ('1', '1', '1', '0');
 
 -- ----------------------------
 -- Table structure for iag_user_role
