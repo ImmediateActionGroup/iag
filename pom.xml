@@ -141,6 +141,14 @@
         </dependency>
         <!-- Spring end -->
 
+        <!-- quartz beg -->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.2.3</version>
+        </dependency>
+        <!-- quartz end -->
+
         <!-- commons beg -->
         <dependency>
             <groupId>commons-collections</groupId>

@@ -6,7 +6,6 @@ import com.iag.exception.ex.BusinessException;
 import com.iag.exception.ex.DataBaseException;
 import com.iag.model.IagRole;
 import com.iag.model.IagUser;
-import com.iag.model.IagUserconfig;
 import com.iag.service.RoleService;
 import com.iag.service.UserService;
 import com.iag.util.SecurityTools;

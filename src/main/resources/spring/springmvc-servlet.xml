@@ -38,6 +38,37 @@
         <property name="maxUploadSize" value="1024000000"/>
     </bean>
 
+    <!-- quartz 线程池配置 beg -->
+
+    <!-- quartz 线程池配置 -->
+    <bean id="executor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="10"/>
+        <property name="maxPoolSize" value="100"/>
+        <property name="queueCapacity" value="500"/>
+    </bean>
+    <!-- quartz 业务对象  已经注解配置-->
+    <!-- quartz 调度业务 -->
+    <bean id="darkCheckJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="darkroomService"/>
+        <property name="targetMethod" value="synoCheckDrStatus"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <!-- quartz 触发器 -->
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="darkCheckJob"/>
+        <property name="cronExpression" value="10 0/1 * * * ?"/>
+    </bean>
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="cronTrigger"/>
+            </list>
+        </property>
+        <property name="taskExecutor" ref="executor"/>
+    </bean>
+    <!-- quartz 配置 end -->
 
     <!-- freemarker beg-->
     <!-- Freemarker配置 -->

@@ -23,7 +23,7 @@ public enum ExceptionEnum {
     ROLE_NOT_EXIST("50000001", "角色不存在"),
 
     //小黑屋相关
-    DARKROOM_NOT_EXIST("60000001", "小黑屋不存在"),
+    DARKROOM_NOT_EXIST("60000001", "该用户不在小黑屋，或者已经从小黑屋释放了"),
 
     //数据库相关
     DB_CONNECTION_ERROR("80000000", "数据库连接异常"),
