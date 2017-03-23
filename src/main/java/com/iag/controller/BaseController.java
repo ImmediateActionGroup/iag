@@ -2,6 +2,7 @@ package com.iag.controller;
 
 import com.google.gson.Gson;
 import com.iag.api.model.ApiResult;
+import com.iag.service.impl.ServiceManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,7 +26,8 @@ public class BaseController {
     protected HttpSession session;
 
     private Gson gson;
-
+    @Autowired
+    protected ServiceManager serviceManager;
     @Autowired
     protected ApiResult apiResult;
 

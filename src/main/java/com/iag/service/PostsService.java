@@ -1,10 +1,14 @@
 package com.iag.service;
 
 import com.iag.exception.ex.BusinessException;
+import com.iag.exception.ex.DataBaseException;
 import com.iag.model.IagPosts;
+import com.iag.model.IagResPer;
 import com.iag.util.db.Conditions;
 import com.iag.util.db.DataPage;
 import com.iag.validate.ValidatePosts;
+
+import java.util.List;
 
 /**
  * Created by 李前程 on 2016/12/15.
@@ -33,4 +37,11 @@ public interface PostsService {
      * @throws BusinessException
      */
     void page(DataPage<IagPosts> page, Conditions conditions) throws BusinessException;
+
+    /**
+     * query all posts
+     * @return
+     * @throws DataBaseException
+     */
+    List<IagPosts> queryAll() throws DataBaseException;
 }

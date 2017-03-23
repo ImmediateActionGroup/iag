@@ -15,6 +15,7 @@ import com.iag.validate.ValidatePosts;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by beishan on 2017/3/8.
@@ -56,5 +57,9 @@ public class PostsServiceImpl extends BaseService<IagPosts> implements PostsServ
 
     public void page(DataPage<IagPosts> page, Conditions conditions) throws BusinessException {
 
+    }
+
+    public List<IagPosts> queryAll() throws DataBaseException {
+        return baseDAO.queryAll(com.iag.model.IagPosts.class);
     }
 }
