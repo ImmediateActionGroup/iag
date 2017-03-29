@@ -15,11 +15,15 @@ public enum ExceptionEnum {
 
     USER_NOT_EXIST("10020001", "用户不存在"),
 
+    USER_LOGIN_FAIL("10030001", "用户登录失败"),
+    USER_LOGIN_PWD_ERROR("10030002", "用户密码错误"),
+
     //帖子相关
 
     POST_EDIT_TYPE_NOTEXIST("40000001", "帖子文本类型不存在"),
+    POST_NOT_EXIST("40010001", "帖子不存在"),
     //回复相关
-
+    COMM_ADD_PARENT_NOTEXIST("40060001", "父回复不存在"),
     //角色相关
     ROLE_NOT_EXIST("50000001", "角色不存在"),
 
@@ -35,7 +39,10 @@ public enum ExceptionEnum {
     DB_DELETE_ERROR("80000001", "数据库删除异常"),
     DB_ADD_ERROR("80000001", "数据库插入异常"),
 
-    MODEL_EXIST("80090001", "要保存的实体已经存在");
+    MODEL_EXIST("80090001", "要保存的实体已经存在"),
+
+    //数据验证异常
+    PARAM_ERROR("90000000", "参数错误");
     //异常代码
     private String code;
     //异常信息

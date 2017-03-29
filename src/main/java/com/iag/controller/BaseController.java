@@ -2,6 +2,7 @@ package com.iag.controller;
 
 import com.google.gson.Gson;
 import com.iag.api.model.ApiResult;
+import com.iag.model.IagUser;
 import com.iag.service.impl.ServiceManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,7 +61,10 @@ public class BaseController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public IagUser  getCurrentUser(){
+        return (IagUser) session.getAttribute("currentUser");
     }
 
 }

@@ -12,6 +12,8 @@ import java.util.List;
  */
 public interface UserService {
 
+    IagUser login(String account, String password) throws BusinessException;
+
     List<IagUser> queryAll() throws DataBaseException;
     /**
      * 增加一个用户
@@ -52,7 +54,7 @@ public interface UserService {
      * @return
      * @throws BusinessException
      */
-    boolean isExistByEmail(String email) throws DataBaseException;
+    IagUser isExistByEmail(String email) throws DataBaseException;
 
     IagUser queryById(Integer uid) throws DataBaseException;
 }

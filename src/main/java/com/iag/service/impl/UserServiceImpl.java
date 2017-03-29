@@ -37,6 +37,19 @@ public class UserServiceImpl extends BaseService<IagUser> implements UserService
     @Autowired
     private RoleService roleService;
 
+    public IagUser login(String account, String password) throws BusinessException {
+        //
+        IagUser user = isExistByEmail(account);
+        if(user != null){
+            if(!user.getPassword().equals(SecurityTools.toMd5(password))){
+                throw new BusinessException(ExceptionEnum.USER_LOGIN_PWD_ERROR);
+            }
+            return user;
+        }else{
+            throw new BusinessException(ExceptionEnum.USER_NOT_EXIST);
+        }
+    }
+
     public List<IagUser> queryAll() throws DataBaseException {
         return baseDAO.queryAll(com.iag.model.IagUser.class);
     }
@@ -71,7 +84,7 @@ public class UserServiceImpl extends BaseService<IagUser> implements UserService
 
     public IagUser addUser(IagUser user) throws BusinessException {
         if(user != null){
-            if(isExistByEmail(user.getEmail())){
+            if(isExistByEmail(user.getEmail()) != null){
                 throw new BusinessException(ExceptionEnum.USER_ADD_EXIST_EMAIL);
             }
             if(isExistByNickName(user.getNickname())){
@@ -162,14 +175,14 @@ public class UserServiceImpl extends BaseService<IagUser> implements UserService
         return false;
     }
 
-    public boolean isExistByEmail(String email) throws DataBaseException {
+    public IagUser isExistByEmail(String email) throws DataBaseException {
         if(StringUtils.isNotBlank(email)){
             IagUser temp = queryByFiled("email", email);
             if(temp != null){
-                return true;
+                return temp;
             }
         }
-        return false;
+        return null;
     }
 
     private IagUser queryByFiled(String filedName, String filedValue) throws DataBaseException{

@@ -44,4 +44,12 @@ public interface PostsService {
      * @throws DataBaseException
      */
     List<IagPosts> queryAll() throws DataBaseException;
+
+    /**
+     * 查询某个帖子
+     * @param pid
+     * @return
+     * @throws DataBaseException
+     */
+    IagPosts queryById(Integer pid) throws DataBaseException;
 }

@@ -23,6 +23,10 @@ import java.util.List;
 @Service("postsService")
 public class PostsServiceImpl extends BaseService<IagPosts> implements PostsService {
 
+    public IagPosts queryById(Integer pid) throws DataBaseException {
+        return (IagPosts) baseDAO.queryById(com.iag.model.IagPosts.class, pid);
+    }
+
     private Integer savePosts(IagPosts posts) throws DataBaseException{
         return baseDAO.save(posts);
     }

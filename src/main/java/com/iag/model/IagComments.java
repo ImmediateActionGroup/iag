@@ -81,7 +81,7 @@ public class IagComments {
         this.posts = posts;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id", nullable = false)
+    @JoinColumn(name = "parent_id")
     public IagComments getComments() {
         return comments;
     }
