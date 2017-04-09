@@ -1,6 +1,7 @@
 package com.iag.api.model;
 
 import com.google.gson.annotations.Expose;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
  * Created by beishan on 2017/3/8.
  */
 @Component
+@Scope(value = "prototype")
 public class ApiResult {
     //API返回的代码，00000000为默认代码，表示API调用正常
     @Expose

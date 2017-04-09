@@ -3,6 +3,8 @@ package com.iag.service.impl;
 import com.iag.enums.ModelIsDelete;
 import com.iag.enums.ModelIsOrNot;
 import com.iag.enums.PostsEditType;
+import com.iag.exception.enums.ExceptionEnum;
+import com.iag.exception.ex.ApiBusinessException;
 import com.iag.exception.ex.BusinessException;
 import com.iag.exception.ex.DataBaseException;
 import com.iag.model.IagBoard;
@@ -25,6 +27,20 @@ public class PostsServiceImpl extends BaseService<IagPosts> implements PostsServ
 
     public IagPosts queryById(Integer pid) throws DataBaseException {
         return (IagPosts) baseDAO.queryById(com.iag.model.IagPosts.class, pid);
+    }
+
+    public IagPosts querySinglePosts(Integer pid){
+        IagPosts posts = null;
+        try {
+            posts = queryById(pid);
+        } catch (DataBaseException e) {
+            e.printStackTrace();
+        }
+        if(posts != null && posts.getIsDelete() == ModelIsDelete.NOT_DELETE.value()){
+            return posts;
+        } else {
+            return null;
+        }
     }
 
     private Integer savePosts(IagPosts posts) throws DataBaseException{
@@ -56,14 +72,29 @@ public class PostsServiceImpl extends BaseService<IagPosts> implements PostsServ
         return posts;
     }
     public void page(DataPage<IagPosts> page) throws BusinessException {
-
+        Conditions conditions = new Conditions();
+        conditions.addCondition("isDelete",
+                ModelIsDelete.NOT_DELETE.value(),
+                Conditions.Operator.EQUAL);
+        conditions.addOrderBy("publishTime", false);
+        this.page(page, conditions);
     }
 
     public void page(DataPage<IagPosts> page, Conditions conditions) throws BusinessException {
-
+        baseDAO.page(page, com.iag.model.IagPosts.class, conditions);
     }
 
     public List<IagPosts> queryAll() throws DataBaseException {
         return baseDAO.queryAll(com.iag.model.IagPosts.class);
+    }
+
+    public void deletePosts(Integer pid) throws BusinessException {
+        IagPosts posts = queryById(pid);
+        if(posts != null){
+            posts.setIsDelete(ModelIsDelete.DELETE.value());
+            baseDAO.update(posts);
+        }else {
+            throw new BusinessException(ExceptionEnum.POST_NOT_EXIST);
+        }
     }
 }

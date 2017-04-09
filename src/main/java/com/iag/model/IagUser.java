@@ -25,6 +25,7 @@ public class IagUser {
     private Date registerTime; //注册时间
     private Date lastModifyTime; //最后修改个人资料时间
     private Date lastLoginTime; //最后登录时间
+    private String avatars; //用户头像
     //关注的人
     private Set<IagUser> attentions = new HashSet<IagUser>();
     //被谁关注
@@ -210,5 +211,13 @@ public class IagUser {
 
     public void setBoards(Set<IagBoard> boards) {
         this.boards = boards;
+    }
+
+    public String getAvatars() {
+        return avatars;
+    }
+
+    public void setAvatars(String avatars) {
+        this.avatars = avatars;
     }
 }

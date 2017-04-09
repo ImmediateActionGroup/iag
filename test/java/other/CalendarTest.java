@@ -21,4 +21,10 @@ public class CalendarTest {
         long t2 = t1 + time * 60;
         System.out.println(t2);
     }
+
+    @Test
+    public void test1() throws Exception{
+        Date date = new Date();
+        System.out.println(date.getTime());
+    }
 }

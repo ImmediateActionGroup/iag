@@ -52,4 +52,19 @@ public interface PostsService {
      * @throws DataBaseException
      */
     IagPosts queryById(Integer pid) throws DataBaseException;
+
+    /**
+     * query a posts
+     * @param pid
+     * @return
+     * @throws BusinessException
+     */
+    IagPosts querySinglePosts(Integer pid);
+
+    /**
+     * 删除帖子
+     * @param pid
+     * @throws BusinessException
+     */
+    void deletePosts(Integer pid) throws BusinessException;
 }

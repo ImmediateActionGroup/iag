@@ -87,6 +87,7 @@
             <tx:method name="page*" propagation="REQUIRED"/>
             <tx:method name="create*" propagation="REQUIRED"/>
             <tx:method name="register*" propagation="REQUIRED"/>
+            <tx:method name="login*" propagation="REQUIRED"/>
             <tx:method name="current*" read-only="false"/>
         </tx:attributes>
     </tx:advice>

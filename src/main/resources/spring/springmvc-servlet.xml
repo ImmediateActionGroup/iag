@@ -29,8 +29,8 @@
          <property name="providerClass" value="org.hibernate.validator.HibernateValidator" />  
     </bean>
     -->
-    <!-- 静态资源 访问 beg
-    <mvc:resources mapping="/static/**" location="/static/"></mvc:resources>-->
+    <!-- 静态资源 访问 beg -->
+    <mvc:resources mapping="/static/**" location="/static/"></mvc:resources>
     <!-- 静态资源 访问 end-->
     <!-- 配置 文件上传的支持 -->
     <!-- upload file config -->
@@ -126,26 +126,17 @@
         <bean class="org.springframework.orm.hibernate5.support.OpenSessionInViewInterceptor">
             <property name="sessionFactory" ref="sessionFactory" />
         </bean>
-        <!-- 多个拦截器,顺序执行 --><!-- 如果不配置或/**,将拦截所有的Controller -->
-        <!--
+        <!-- 多个拦截器,顺序执行 -->
+        <!-- 如果不配置或/**,将拦截所有的Controller -->
         <mvc:interceptor>
-
             <mvc:mapping path="/**" />
-            <bean class="com.eagletest.interceptor.AuthorityInterceptor">
-                <property name="uncheckUrls">
+            <bean class="com.iag.interceptor.AuthorityInterceptor">
+                <property name="unchekUrls">
                     <list>
                         <value>/login</value>
                     </list>
                 </property>
-                <property name="createTaskStep">
-                    <list>
-                        <value>createtask</value>
-                        <value>createtask_2</value>
-                        <value>createtask_3</value>
-                    </list>
-                </property>
             </bean>
         </mvc:interceptor>
-        -->
     </mvc:interceptors>
 </beans>

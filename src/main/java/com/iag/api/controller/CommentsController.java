@@ -8,6 +8,7 @@ import com.iag.enums.log.SystemLog;
 import com.iag.exception.enums.ExceptionEnum;
 import com.iag.exception.ex.ApiBusinessException;
 import com.iag.exception.ex.BusinessException;
+import com.iag.exception.ex.api.ApiParamException;
 import com.iag.model.IagComments;
 import com.iag.model.IagUser;
 import com.iag.validate.ValidateComments;
@@ -43,7 +44,7 @@ public class CommentsController extends BaseController {
     @AuthorityCheck
     public void addComments(@Valid @RequestBody ValidateComments comments, BindingResult bindingResult) throws ApiBusinessException{
         if(bindingResult.hasErrors()){
-            throw new ApiBusinessException(ExceptionEnum.PARAM_ERROR, bindingResult);
+            throw new ApiParamException(ExceptionEnum.PARAM_ERROR, bindingResult);
         }
         IagUser currentUser = getCurrentUser();
         try {

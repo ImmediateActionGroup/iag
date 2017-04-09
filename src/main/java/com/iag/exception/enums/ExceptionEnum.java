@@ -17,6 +17,7 @@ public enum ExceptionEnum {
 
     USER_LOGIN_FAIL("10030001", "用户登录失败"),
     USER_LOGIN_PWD_ERROR("10030002", "用户密码错误"),
+    USER_NOT_LOGIN("10030003", "用户未登录"),
 
     //帖子相关
 

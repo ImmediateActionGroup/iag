@@ -47,7 +47,7 @@ public class ApiBaseController {
      * render a String mesg
      * @param mesg
      */
-    public void render(String mesg){
+    private void render(String mesg){
         try{
             response.setContentType(CONTENT_TYPE + ";charset=UTF-8");
             response.getWriter().print(mesg);
@@ -61,7 +61,7 @@ public class ApiBaseController {
      * render a Object as json
      * @param json
      */
-    public void renderObj(Object json){
+    private void renderObj(Object json){
         try{
             response.setContentType(CONTENT_TYPE + ";charset=UTF-8");
             response.getWriter().print(gson.toJson(json));
@@ -75,7 +75,7 @@ public class ApiBaseController {
      * render a Object as json
      * @param json
      */
-    public void renderObj(Object json, Type listType){
+    private void renderObj(Object json, Type listType){
         try{
             //gson.toJson(json, listType);
             response.setContentType(CONTENT_TYPE + ";charset=UTF-8");
@@ -98,4 +98,12 @@ public class ApiBaseController {
         return (EtUser) session.getAttribute("currentUser");
     }
     */
+    public void renderResult(String msg){
+        this.renderResult(msg, null);
+    }
+    public void renderResult(String msg, Object data){
+        this.apiResult.reset();
+        this.apiResult.setApiResult(msg, data);
+        this.renderResult();
+    }
 }

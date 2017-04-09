@@ -44,6 +44,9 @@ public class UserServiceImpl extends BaseService<IagUser> implements UserService
             if(!user.getPassword().equals(SecurityTools.toMd5(password))){
                 throw new BusinessException(ExceptionEnum.USER_LOGIN_PWD_ERROR);
             }
+            //记录用户登录时间
+            user.setLastLoginTime(new Date());
+            baseDAO.update(user);
             return user;
         }else{
             throw new BusinessException(ExceptionEnum.USER_NOT_EXIST);
